@@ -32,6 +32,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.transfer.access.ItemAccess;
+import net.neoforged.neoforge.transfer.energy.EnergyHandler;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
@@ -47,12 +48,7 @@ public class AbstractPoweredBlockEntity extends BlockEntity implements MenuProvi
     protected final RedEnergy energy;
     protected int progress = 0;
     protected int maxProgress = 72;
-    private int litTimeRemaining;
-    private int litTotalTime;
-    private int cookingTimer;
-    private int cookingTotalTime;
     protected int capacity;
-    private int pendingEnergy;
 
 
     public AbstractPoweredBlockEntity(BlockEntityType<?> type, BlockPos worldPosition, BlockState blockState, int capacity, int receive, int extract) {
@@ -184,6 +180,10 @@ public class AbstractPoweredBlockEntity extends BlockEntity implements MenuProvi
         maxProgress = 72;
     }
 
+    public EnergyHandler getEnergyHandler() {
+        return energy;
+    }
+
     @Override
     protected void collectImplicitComponents(DataComponentMap.Builder components) {
         super.collectImplicitComponents(components);
@@ -212,44 +212,7 @@ public class AbstractPoweredBlockEntity extends BlockEntity implements MenuProvi
     }
 
     @Override
-    public @Nullable AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
+    public @Nullable AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
         return null;
-    }
-
-    @Nullable
-    @Override
-    public Packet<ClientGamePacketListener> getUpdatePacket() {
-        return ClientboundBlockEntityDataPacket.create(this);
-    }
-
-    @Override
-    public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
-        return saveWithoutMetadata(pRegistries);
-    }
-
-    @Override
-    public void onDataPacket(Connection net, ValueInput valueInput) {
-        super.onDataPacket(net, valueInput);
-    }
-
-
-    @Override
-    protected void saveAdditional(ValueOutput output) {
-        super.saveAdditional(output);
-        output.putInt("powered_furnace.progress", progress);
-        output.putInt("powered_furnace.max_progress", maxProgress);
-        output.putInt("energy", energy.getEnergyStored());
-
-        output.putChild("inventory", inventory);
-    }
-
-    @Override
-    protected void loadAdditional(ValueInput input) {
-        super.loadAdditional(input);
-        progress = input.getIntOr("powered_furnace.progress", 0);
-        maxProgress = input.getIntOr("powered_furnace.max_progress", 0);
-        setEnergy(input.getIntOr("energy", 0));
-
-        input.child("inventory").ifPresent(inventory::deserialize);
     }
 }

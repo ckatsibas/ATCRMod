@@ -1,6 +1,7 @@
 package com.eabkystudios.atcrmod.event;
 
 import com.eabkystudios.atcrmod.AgainstTheCreepingRot;
+import com.eabkystudios.atcrmod.block.entity.ATCRBlockEntities;
 import com.eabkystudios.atcrmod.entity.ATCREntities;
 import com.eabkystudios.atcrmod.entity.custom.DeerEntity;
 import com.eabkystudios.atcrmod.entity.custom.LostTravelerEntity;
@@ -14,12 +15,18 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.DeathProtection;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
+import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.HandlerThread;
@@ -44,6 +51,17 @@ public class ATCREvents {
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(ATCREntities.LOST_TRAVELER.get(), LostTravelerEntity.createAttributes().build());
         event.put(ATCREntities.DEER.get(), DeerEntity.createAttributes().build());
+    }
+
+    @SubscribeEvent
+    public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
+        event.register(ATCREntities.LOST_TRAVELER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.WORLD_SURFACE, Mob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
+        event.register(ATCREntities.DEER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.WORLD_SURFACE, Mob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
+    }
+
+    @SubscribeEvent
+    public static void registerCapabilities(RegisterCapabilitiesEvent event){
+        event.registerBlockEntity(Capabilities.Energy.BLOCK, ATCRBlockEntities.POWERED_FURNACE_BE.get(), (furnace, side) -> furnace.getEnergyHandler());
     }
 
     //TODO: Remove this. This is called when entity dies so I wont be able to prevent death here.

@@ -57,12 +57,6 @@ public class AgainstTheCreepingRotClient {
     }
 
     @SubscribeEvent
-    public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
-        event.register(ATCREntities.LOST_TRAVELER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.WORLD_SURFACE, Mob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
-        event.register(ATCREntities.DEER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.WORLD_SURFACE, Mob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
-    }
-
-    @SubscribeEvent
     public static void registeredKeyMappings(RegisterKeyMappingsEvent event){
         event.register(ATCRKeyMappings.PRESS_CREATE_LIFE.get());
     }

@@ -4,6 +4,8 @@ import com.eabkystudios.atcrmod.block.custom.AbstractPoweredBlock;
 import com.eabkystudios.atcrmod.block.entity.ATCRBlockEntities;
 import com.eabkystudios.atcrmod.menu.custom.PoweredFurnaceMenu;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
@@ -27,8 +29,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class PoweredFurnaceEntity extends AbstractPoweredBlockEntity
 {
-    private static final Logger log = LoggerFactory.getLogger(DenseRedBlockEntity.class);
-    public static final int CAPACITY = DenseRedBlockEntity.GENERATION_RATE * 20 * 10;
+    public static final int CAPACITY = 4000;
+    private static final int MIN_ENERGY_TO_START = 400;
+    private static final int ENERGY_PER_CRAFT = 400;
     public final EnergyHandler input = energy;
     private boolean previewReady;
 
@@ -45,17 +48,9 @@ public class PoweredFurnaceEntity extends AbstractPoweredBlockEntity
     }
 
     @Override
-    public Packet<ClientGamePacketListener> getUpdatePacket() {
-        return ClientboundBlockEntityDataPacket.create(this);
-    }
-
-    @Override
     public void tick(Level level, BlockPos pos, BlockState state) {
 
-
-
-        if (!(level instanceof ServerLevel server) || energy.getEnergyStored() != CAPACITY){
-            log.debug("Energy in powered furnace: " + energy.getEnergyStored());
+        if (!(level instanceof ServerLevel server) || energy.getEnergyStored() < MIN_ENERGY_TO_START){
             return;
         }
 
@@ -67,6 +62,7 @@ public class PoweredFurnaceEntity extends AbstractPoweredBlockEntity
             if(hasCraftingFinished()) {
                 craftItem();
                 resetProgress();
+                energy.set(energy.getEnergyStored() - ENERGY_PER_CRAFT);
             }
         } else {
             resetProgress();
@@ -75,12 +71,44 @@ public class PoweredFurnaceEntity extends AbstractPoweredBlockEntity
     }
 
     @Override
-    public void onDataPacket(Connection connection, ValueInput input) {
+    public void handleUpdateTag(ValueInput input) {
         previewReady = input.getBooleanOr("preview_ready", false);
     }
 
+    @Nullable
     @Override
-    public void handleUpdateTag(ValueInput input) {
-        previewReady = input.getBooleanOr("preview_ready", false);
+    public Packet<ClientGamePacketListener> getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
+    public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
+        return saveWithoutMetadata(pRegistries);
+    }
+
+    @Override
+    public void onDataPacket(Connection net, ValueInput valueInput) {
+        super.onDataPacket(net, valueInput);
+    }
+
+
+    @Override
+    protected void saveAdditional(ValueOutput output) {
+        super.saveAdditional(output);
+        output.putInt("powered_furnace.progress", progress);
+        output.putInt("powered_furnace.max_progress", maxProgress);
+        output.putInt("energy", energy.getEnergyStored());
+
+        output.putChild("inventory", inventory);
+    }
+
+    @Override
+    protected void loadAdditional(ValueInput input) {
+        super.loadAdditional(input);
+        progress = input.getIntOr("powered_furnace.progress", 0);
+        maxProgress = input.getIntOr("powered_furnace.max_progress", 0);
+        setEnergy(input.getIntOr("energy", 0));
+
+        input.child("inventory").ifPresent(inventory::deserialize);
     }
 }
