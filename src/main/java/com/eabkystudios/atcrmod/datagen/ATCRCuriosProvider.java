@@ -20,6 +20,8 @@ public class ATCRCuriosProvider extends CuriosDataProvider {
 
         this.tag(CuriosTags.NECKLACE).add(ATCRItems.AMULET_OF_THE_DEATHLESS.get());
 
+        this.tag(CuriosTags.CHARM).add(ATCRItems.HEART_OF_RUINOUS_ROT.get());
+
 
         this.createEntities("player")
                 .addPlayer()

@@ -7,6 +7,7 @@ import com.eabkystudios.atcrmod.block.custom.PoweredFurnaceBlock;
 import com.eabkystudios.atcrmod.item.ATCRItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -15,6 +16,9 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.function.Function;
 import java.util.function.ToIntFunction;
 
@@ -71,6 +75,22 @@ public class ATCRBlocks {
     private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
         ATCRItems.ITEMS.registerItem(name, properties -> new BlockItem(block.get(), properties.useBlockDescriptionPrefix()));
     }
+
+    private static <T extends Block> Collection<ItemStack> collectStacks(DeferredRegister.Blocks registry) {
+        Collection<ItemStack> stacks = new ArrayList<>();
+
+        registry.getEntries().forEach(holder -> {
+            Block block = holder.get();
+            stacks.add(block.asItem().getDefaultInstance());
+        });
+
+        return stacks.stream().sorted(Comparator.comparing(stack -> stack.getItem().toString())).toList();
+    }
+
+    public static Collection<ItemStack> allModBlocks() {
+        return collectStacks(BLOCKS);
+    }
+
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);

@@ -11,6 +11,7 @@ public class ATCRCurios {
     public static final ResourceKey<Item> VITALITY_RING = createKey("ring_of_vitality");
     public static final ResourceKey<Item> GOLD_RING = createKey("gold_ring");
     public static final ResourceKey<Item> AMULET_OF_THE_DEATHLESS = createKey("amulet_of_the_deathless");
+    public static final ResourceKey<Item> HEART_OF_RUINOUS_ROT = createKey("heart_of_ruinous_rot");
 
     private static ResourceKey<Item> createKey(String path) {
         return ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, path));

@@ -6,10 +6,14 @@ import com.eabkystudios.atcrmod.item.ATCRItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.function.Supplier;
 
 public class CreativeTab {
@@ -18,65 +22,23 @@ public class CreativeTab {
 
     //TODO: make method that adds all current and new items and blocks
     public static final Supplier<CreativeModeTab> ATCR_TAB = CREATIVE_MODE_TABS.register("actr_all_tab",
-            ()-> CreativeModeTab.builder().icon(()->new ItemStack(ATCRItems.STEEL_INGOT.get()))
+            ()-> CreativeModeTab.builder().icon(()->new ItemStack(ATCRItems.RED_SHARD.get()))
                     .title(Component.translatable("creativetab.atcrmod.actr_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ATCRItems.STEEL_INGOT);
-                        output.accept(ATCRBlocks.STEEL_BLOCK);
-                        output.accept(ATCRBlocks.SILVER_ORE);
-                        output.accept(ATCRBlocks.SILVER_DEEPSLATE_ORE);
-                        output.accept(ATCRItems.RAW_SILVER);
-                        output.accept(ATCRItems.SILVER_INGOT);
-                        output.accept(ATCRItems.LOTUS_FLOWER);
-                        output.accept(ATCRItems.LEATHER_WRAPPED_HANDLE);
-                        output.accept(ATCRItems.SILVER_SWORD);
-                        output.accept(ATCRItems.STEEL_SWORD);
-                        output.accept(ATCRItems.STEEL_PICKAXE);
-                        output.accept(ATCRItems.STEEL_AXE);
-                        output.accept(ATCRItems.STEEL_SHOVEL);
-                        output.accept(ATCRBlocks.GRASSY_COBBLESTONE);
-                        output.accept(ATCRBlocks.GRASSY_COBBLESTONE_STAIRS);
-                        output.accept(ATCRBlocks.GRASSY_COBBLESTONE_SLAB);
-                        output.accept(ATCRBlocks.GRASSY_COBBLESTONE_WALL);
-                        output.accept(ATCRBlocks.POWERED_FURNACE);
-                        output.accept(ATCRItems.TRAVELER_SWORD);
-                        output.accept(ATCRItems.TRAVELER_DAGGER);
-                        output.accept(ATCRItems.RED_SHARD);
-                        output.accept(ATCRBlocks.CLUSTER_OF_RED);
-                        output.accept(ATCRBlocks.DENSE_BLOCK_OF_RED);
-                        output.accept(ATCRItems.BATTERY_BASIC);
-                        output.accept(ATCRItems.LOST_TRAVELER_SPAWN_EGG);
-                        output.accept(ATCRItems.DEER_SPAWN_EGG);
-                        output.accept(ATCRItems.VITALITY_RING);
-                        output.accept(ATCRItems.GOLD_RING);
-                        output.accept(ATCRItems.AMULET_OF_THE_DEATHLESS);
-                        output.accept(ATCRBlocks.RUINED_STONE);
-                        output.accept(ATCRBlocks.RUINED_STONE_STAIRS);
-                        output.accept(ATCRBlocks.RUINED_STONE_SLAB);
-                        output.accept(ATCRBlocks.RUINED_STONE_WALL);
-                        output.accept((ATCRBlocks.RUINED_COBBLESTONE));
-                        output.accept((ATCRBlocks.RUINED_COBBLESTONE_STAIRS));
-                        output.accept((ATCRBlocks.RUINED_COBBLESTONE_SLAB));
-                        output.accept((ATCRBlocks.RUINED_COBBLESTONE_WALL));
-                        output.accept((ATCRBlocks.RUINED_MOSSY_COBBLESTONE));
-                        output.accept((ATCRBlocks.RUINED_MOSSY_COBBLESTONE_STAIRS));
-                        output.accept((ATCRBlocks.RUINED_MOSSY_COBBLESTONE_SLAB));
-                        output.accept((ATCRBlocks.RUINED_MOSSY_COBBLESTONE_WALL));
-                        output.accept((ATCRBlocks.RUINED_STONE_BRICKS));
-                        output.accept((ATCRBlocks.RUINED_STONE_BRICKS_STAIRS));
-                        output.accept((ATCRBlocks.RUINED_STONE_BRICKS_SLAB));
-                        output.accept((ATCRBlocks.RUINED_STONE_BRICKS_WALL));
-                        output.accept((ATCRBlocks.RUINED_MOSSY_STONE_BRICKS));
-                        output.accept((ATCRBlocks.RUINED_MOSSY_STONE_BRICKS_STAIRS));
-                        output.accept((ATCRBlocks.RUINED_MOSSY_STONE_BRICKS_SLAB));
-                        output.accept((ATCRBlocks.RUINED_MOSSY_STONE_BRICKS_WALL));
-                        output.accept((ATCRBlocks.RUINED_CRACKED_STONE_BRICKS));
-                        output.accept((ATCRBlocks.RUINED_CRACKED_STONE_BRICKS_STAIRS));
-                        output.accept((ATCRBlocks.RUINED_CRACKED_STONE_BRICKS_SLAB));
-                        output.accept((ATCRBlocks.RUINED_CRACKED_STONE_BRICKS_WALL));
-                        output.accept((ATCRBlocks.RUINED_CHISELED_STONE_BRICKS));
+                        output.acceptAll(allModItems());
+                        //output.acceptAll(ATCRBlocks.allModBlocks());
                     })
                     .build());
+
+    private static Collection<ItemStack> allModItems() {
+        Collection<ItemStack> items = new ArrayList<>();
+        ATCRItems.ITEMS.getEntries().forEach(holder -> {
+            Item item = holder.get();
+            items.add(item.getDefaultInstance());
+        });
+
+        return items;
+    }
 
     public static void register(IEventBus eventBus){
         CREATIVE_MODE_TABS.register(eventBus);

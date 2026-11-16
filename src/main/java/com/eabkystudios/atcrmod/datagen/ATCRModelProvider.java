@@ -9,12 +9,20 @@ import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.model.*;
+import net.minecraft.client.renderer.item.CuboidItemModelWrapper;
+import net.minecraft.client.renderer.item.SelectItemModel;
+import net.minecraft.client.renderer.item.properties.select.DisplayContext;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import org.jspecify.annotations.NonNull;
+
+import java.util.List;
+import java.util.Optional;
 import java.util.function.BiConsumer;
 import static net.minecraft.client.data.models.BlockModelGenerators.*;
 
@@ -47,6 +55,11 @@ public class ATCRModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ATCRItems.VITALITY_RING.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ATCRItems.GOLD_RING.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ATCRItems.AMULET_OF_THE_DEATHLESS.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ATCRItems.RED_METAL_INGOT.get(), ModelTemplates.FLAT_ITEM);
+        generateGuiOverrideItem(itemModels, ATCRItems.RUINED_STEEL_RITUAL_DAGGER.get(),
+                Identifier.fromNamespaceAndPath("atcrmod", "item/ruined_steel_ritual_dagger_2d"),
+                Identifier.fromNamespaceAndPath("atcrmod", "item/ruined_steel_ritual_dagger_3d"));
+        itemModels.generateFlatItem(ATCRItems.HEART_OF_RUINOUS_ROT.get(), ModelTemplates.FLAT_ITEM);
 
         /*BLOCKS*/
         blockModels.createTrivialCube(ATCRBlocks.STEEL_BLOCK.get());
@@ -73,5 +86,27 @@ public class ATCRModelProvider extends ModelProvider {
         MultiVariant litModel = plainVariant(provider.get(poweredBlock).updateTextures(textures ->
                 textures.put(TextureSlot.FRONT, frontTexture)).updateTextures(textures -> textures.put(TextureSlot.TOP, topTexture)).createWithSuffix(poweredBlock, "_on", modelOutput));
         blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(poweredBlock).with(createBooleanModelDispatch(BlockStateProperties.LIT, litModel, normalModel)).with(ROTATION_HORIZONTAL_FACING));
+    }
+
+    /**
+     * Creates a model definition that uses one model in the GUI and another in all other display contexts.
+     *
+     * @param itemModels the item model generator
+     * @param item the item to configure
+     * @param guiModelId the model to use in the GUI
+     * @param fallbackModelId the model to use in other contexts
+     */
+    private void generateGuiOverrideItem(ItemModelGenerators itemModels, Item item, Identifier guiModelId, Identifier fallbackModelId) {
+        // Wrap each model ID in the format expected by the item model system.
+        var guiModel = new CuboidItemModelWrapper.Unbaked(guiModelId, Optional.empty(), List.of());
+        var fallbackModel = new CuboidItemModelWrapper.Unbaked(fallbackModelId, Optional.empty(), List.of());
+
+        // Use guiModel whenever the item is shown in the GUI.
+        var guiCase = new SelectItemModel.SwitchCase<ItemDisplayContext>(List.of(ItemDisplayContext.GUI), guiModel);
+
+        // Check the display context and use fallbackModel if no case matches.
+        var displayContextSwitch = new SelectItemModel.UnbakedSwitch<DisplayContext, ItemDisplayContext>(new DisplayContext(), List.of(guiCase));
+
+        itemModels.itemModelOutput.accept(item, new SelectItemModel.Unbaked(Optional.empty(), displayContextSwitch, Optional.of(fallbackModel)));
     }
 }
