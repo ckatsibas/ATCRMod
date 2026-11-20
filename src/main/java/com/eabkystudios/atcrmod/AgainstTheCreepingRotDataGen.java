@@ -32,5 +32,6 @@ public class AgainstTheCreepingRotDataGen {
         generator.addProvider(true, new ATCRRecipeProvider.Runner(packOutput, lookupProvider));
         generator.addProvider(true, new ATCRDatapackProvider(packOutput, lookupProvider));
         generator.addProvider(true, new ATCRCuriosProvider(AgainstTheCreepingRot.MODID, packOutput, lookupProvider));
+        generator.addProvider(true, new ATCREquipmentAssetProvider(packOutput));
     }
 }

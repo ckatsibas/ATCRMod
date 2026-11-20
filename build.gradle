@@ -54,6 +54,18 @@ repositories {
             includeGroup "maven.modrinth"
         }
     }
+
+    repositories {
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name = 'GeckoLib'
+                    url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+                }
+            }
+            filter { includeGroupAndSubgroups('com.geckolib') }
+        }
+    }
 }
 
 base {
@@ -142,6 +154,8 @@ dependencies {
     compileOnly("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
     runtimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}")
     implementation "maven.modrinth:jade:${project.jade_version}"
+    implementation "com.geckolib:geckolib-neoforge-${minecraft_version}:${geckolibVersion}"
+    interfaceInjectionData "com.geckolib:geckolib-neoforge-${minecraft_version}:${geckolibVersion}"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

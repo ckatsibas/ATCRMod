@@ -11,6 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.component.DeathProtection;
+import net.minecraft.world.item.equipment.ArmorType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -42,6 +43,12 @@ public class ATCRItems {
     public static final  DeferredItem<Item> TRAVELER_DAGGER = ITEMS.registerItem("traveler_dagger", properties -> new TravelerDaggerItem(properties.sword(ToolMaterial.IRON, 0, -1.5f)));
     //public static final  DeferredItem<Item> TRAVELER_SHIELD = ITEMS.registerItem("traveler_shield", properties -> new ShieldItem(properties.));
     public static final  DeferredItem<Item> RUINED_STEEL_RITUAL_DAGGER = ITEMS.registerItem("ruined_steel_ritual_dagger", properties -> new Item(properties.sword(ATCRToolTiers.STEEL, 1f, -1.5f)));
+
+    /*ARMOR*/
+    public static final DeferredItem<Item> STEEL_ARMOR_HELMET = ITEMS.registerItem("steel_armor_helmet", properties -> new SteelArmorItem(properties.humanoidArmor(ATCRArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorType.HELMET)));
+    public static final DeferredItem<Item> STEEL_ARMOR_CHESTPLATE = ITEMS.registerItem("steel_armor_chestplate", properties -> new SteelArmorItem(properties.humanoidArmor(ATCRArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorType.CHESTPLATE)));
+    public static final DeferredItem<Item> STEEL_ARMOR_LEGGINGS = ITEMS.registerItem("steel_armor_leggings", properties -> new SteelArmorItem(properties.humanoidArmor(ATCRArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorType.LEGGINGS)));
+    public static final DeferredItem<Item> STEEL_ARMOR_BOOTS = ITEMS.registerItem("steel_armor_boots", properties -> new SteelArmorItem(properties.humanoidArmor(ATCRArmorMaterials.STEEL_ARMOR_MATERIAL, ArmorType.BOOTS)));
 
     /*TOOLS*/
     public static final DeferredItem<Item> STEEL_PICKAXE = ITEMS.registerItem("steel_pickaxe", properties -> new Item(properties.pickaxe(ATCRToolTiers.STEEL, 1f, -2.8f)));

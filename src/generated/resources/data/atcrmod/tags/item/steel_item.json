@@ -4,6 +4,10 @@
     "atcrmod:steel_sword",
     "atcrmod:steel_pickaxe",
     "atcrmod:steel_axe",
-    "atcrmod:steel_shovel"
+    "atcrmod:steel_shovel",
+    "atcrmod:steel_armor_helmet",
+    "atcrmod:steel_armor_chestplate",
+    "atcrmod:steel_armor_leggings",
+    "atcrmod:steel_armor_boots"
   ]
 }

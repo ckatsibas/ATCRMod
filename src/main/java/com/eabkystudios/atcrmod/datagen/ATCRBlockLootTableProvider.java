@@ -52,6 +52,7 @@ public class ATCRBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ATCRBlocks.RUINED_MOSSY_STONE_BRICKS_WALL.get());
         dropSelf(ATCRBlocks.RUINED_CRACKED_STONE_BRICKS_WALL.get());
         dropSelf(ATCRBlocks.GRASSY_COBBLESTONE_WALL.get());
+        dropSelf(ATCRBlocks.RED_METAL_CABLE.get());
 
         add(ATCRBlocks.SILVER_ORE.get(), createOreDrop(ATCRBlocks.SILVER_ORE.get(), ATCRItems.RAW_SILVER.get()));
         add(ATCRBlocks.SILVER_DEEPSLATE_ORE.get(), createOreDrop(ATCRBlocks.SILVER_DEEPSLATE_ORE.get(), ATCRItems.RAW_SILVER.get()));

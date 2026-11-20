@@ -4,6 +4,7 @@ import com.eabkystudios.atcrmod.AgainstTheCreepingRot;
 import com.eabkystudios.atcrmod.block.custom.ClusterOfRedBlock;
 import com.eabkystudios.atcrmod.block.custom.DenseRedBlock;
 import com.eabkystudios.atcrmod.block.custom.PoweredFurnaceBlock;
+import com.eabkystudios.atcrmod.block.custom.RedMetalCableBlock;
 import com.eabkystudios.atcrmod.item.ATCRItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
@@ -65,6 +66,7 @@ public class ATCRBlocks {
     public static final DeferredBlock<Block> RUINED_MOSSY_STONE_BRICKS_WALL = registerBlock("ruined_mossy_stone_bricks_wall", properties -> new WallBlock(properties.requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
     public static final DeferredBlock<Block> RUINED_CRACKED_STONE_BRICKS_WALL = registerBlock("ruined_cracked_stone_bricks_wall", properties -> new WallBlock(properties.requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
     public static final DeferredBlock<Block> GRASSY_COBBLESTONE_WALL = registerBlock("grassy_cobblestone_wall", properties -> new WallBlock(properties.strength(2f,6f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> RED_METAL_CABLE = registerBlock("red_metal_cable", properties -> new RedMetalCableBlock(properties.strength(1.0f).sound(SoundType.METAL).noOcclusion()));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties, T> function){
         DeferredBlock<T> toReturn = BLOCKS.registerBlock(name, function);

@@ -62,6 +62,7 @@ public class ATCREvents {
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event){
         event.registerBlockEntity(Capabilities.Energy.BLOCK, ATCRBlockEntities.POWERED_FURNACE_BE.get(), (furnace, side) -> furnace.getEnergyHandler());
+        event.registerBlockEntity(Capabilities.Energy.BLOCK, ATCRBlockEntities.RED_METAL_CABLE_BE.get(), (cable, side) -> cable.getEnergyHandler());
     }
 
     //TODO: Remove this. This is called when entity dies so I wont be able to prevent death here.

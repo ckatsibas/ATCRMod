@@ -41,7 +41,9 @@ public class ATCRModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ATCRItems.LOTUS_FLOWER.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ATCRItems.LEATHER_WRAPPED_HANDLE.get(), ModelTemplates.FLAT_ITEM);
         itemModels.declareCustomModelItem(ATCRItems.SILVER_SWORD.get());
-        itemModels.declareCustomModelItem(ATCRItems.STEEL_SWORD.get());
+        generateGuiOverrideItem(itemModels, ATCRItems.STEEL_SWORD.get(),
+                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/steel_sword_2d"),
+                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/steel_sword_3d"));
         itemModels.declareCustomModelItem(ATCRItems.STEEL_PICKAXE.get());
         itemModels.declareCustomModelItem(ATCRItems.STEEL_AXE.get());
         itemModels.declareCustomModelItem(ATCRItems.STEEL_SHOVEL.get());
@@ -57,9 +59,13 @@ public class ATCRModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ATCRItems.AMULET_OF_THE_DEATHLESS.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ATCRItems.RED_METAL_INGOT.get(), ModelTemplates.FLAT_ITEM);
         generateGuiOverrideItem(itemModels, ATCRItems.RUINED_STEEL_RITUAL_DAGGER.get(),
-                Identifier.fromNamespaceAndPath("atcrmod", "item/ruined_steel_ritual_dagger_2d"),
-                Identifier.fromNamespaceAndPath("atcrmod", "item/ruined_steel_ritual_dagger_3d"));
+                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/ruined_steel_ritual_dagger_2d"),
+                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/ruined_steel_ritual_dagger_3d"));
         itemModels.generateFlatItem(ATCRItems.HEART_OF_RUINOUS_ROT.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ATCRItems.STEEL_ARMOR_HELMET.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ATCRItems.STEEL_ARMOR_CHESTPLATE.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ATCRItems.STEEL_ARMOR_LEGGINGS.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ATCRItems.STEEL_ARMOR_BOOTS.get(), ModelTemplates.FLAT_ITEM);
 
         /*BLOCKS*/
         blockModels.createTrivialCube(ATCRBlocks.STEEL_BLOCK.get());
@@ -76,6 +82,7 @@ public class ATCRModelProvider extends ModelProvider {
         blockModels.family(ATCRBlocks.RUINED_MOSSY_STONE_BRICKS.get()).stairs(ATCRBlocks.RUINED_MOSSY_STONE_BRICKS_STAIRS.get()).slab(ATCRBlocks.RUINED_MOSSY_STONE_BRICKS_SLAB.get()).wall(ATCRBlocks.RUINED_MOSSY_STONE_BRICKS_WALL.get());
         blockModels.family(ATCRBlocks.RUINED_CRACKED_STONE_BRICKS.get()).stairs(ATCRBlocks.RUINED_CRACKED_STONE_BRICKS_STAIRS.get()).slab(ATCRBlocks.RUINED_CRACKED_STONE_BRICKS_SLAB.get()).wall(ATCRBlocks.RUINED_CRACKED_STONE_BRICKS_WALL.get());
         blockModels.createTrivialCube(ATCRBlocks.RUINED_CHISELED_STONE_BRICKS.get());
+        blockModels.createTrivialCube(ATCRBlocks.RED_METAL_CABLE.get());
     }
 
     /*METHODS*/

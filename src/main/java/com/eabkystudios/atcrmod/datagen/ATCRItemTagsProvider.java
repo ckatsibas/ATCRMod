@@ -23,7 +23,11 @@ public class ATCRItemTagsProvider extends ItemTagsProvider {
                 .add(ATCRItems.STEEL_SWORD.get())
                 .add(ATCRItems.STEEL_PICKAXE.get())
                 .add(ATCRItems.STEEL_AXE.get())
-                .add(ATCRItems.STEEL_SHOVEL.get());
+                .add(ATCRItems.STEEL_SHOVEL.get())
+                .add(ATCRItems.STEEL_ARMOR_HELMET.get())
+                .add(ATCRItems.STEEL_ARMOR_CHESTPLATE.get())
+                .add(ATCRItems.STEEL_ARMOR_LEGGINGS.get())
+                .add(ATCRItems.STEEL_ARMOR_BOOTS.get());
 
         tag(ATCRTags.Items.SILVER_ITEM)
                 .add(ATCRItems.RAW_SILVER.get())
@@ -35,7 +39,11 @@ public class ATCRItemTagsProvider extends ItemTagsProvider {
 
         tag(ATCRTags.Items.STEEL_REPAIRABLE)
                 .add(ATCRItems.STEEL_SWORD.get())
-                .add(ATCRItems.STEEL_PICKAXE.get());
+                .add(ATCRItems.STEEL_PICKAXE.get())
+                .add(ATCRItems.STEEL_ARMOR_HELMET.get())
+                .add(ATCRItems.STEEL_ARMOR_CHESTPLATE.get())
+                .add(ATCRItems.STEEL_ARMOR_LEGGINGS.get())
+                .add(ATCRItems.STEEL_ARMOR_BOOTS.get());
 
         tag(ItemTags.SWORDS)
                 .add(ATCRItems.SILVER_SWORD.get())
@@ -50,5 +58,17 @@ public class ATCRItemTagsProvider extends ItemTagsProvider {
 
         tag(ItemTags.SHOVELS)
                 .add(ATCRItems.STEEL_SHOVEL.get());
+
+        tag(ItemTags.HEAD_ARMOR)
+                .add(ATCRItems.STEEL_ARMOR_HELMET.get());
+
+        tag(ItemTags.CHEST_ARMOR)
+                .add(ATCRItems.STEEL_ARMOR_CHESTPLATE.get());
+
+        tag(ItemTags.LEG_ARMOR)
+                .add(ATCRItems.STEEL_ARMOR_LEGGINGS.get());
+
+        tag(ItemTags.FOOT_ARMOR)
+                .add(ATCRItems.STEEL_ARMOR_BOOTS.get());
     }
 }

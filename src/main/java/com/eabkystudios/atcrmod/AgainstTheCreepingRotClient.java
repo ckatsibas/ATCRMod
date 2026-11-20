@@ -6,13 +6,20 @@ import com.eabkystudios.atcrmod.entity.client.Deer.DeerModel;
 import com.eabkystudios.atcrmod.entity.client.Deer.DeerRenderer;
 import com.eabkystudios.atcrmod.entity.client.LostTraveler.LostTravelerModel;
 import com.eabkystudios.atcrmod.entity.client.LostTraveler.LostTravelerRenderer;
+import com.eabkystudios.atcrmod.item.ATCRItems;
+import com.eabkystudios.atcrmod.item.client.SteelArmorRenderer;
 import com.eabkystudios.atcrmod.keymapping.ATCRKeyMappings;
 import com.eabkystudios.atcrmod.menu.ATCRMenuTypes;
 import com.eabkystudios.atcrmod.menu.custom.PoweredFurnaceScreen;
+import com.geckolib.renderer.GeoArmorRenderer;
+import com.google.common.base.Suppliers;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.SpawnPlacementTypes;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -27,6 +34,8 @@ import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import org.slf4j.Logger;
+
+import javax.annotation.Nullable;
 
 // This class will not load on dedicated servers. Accessing client side code from here is safe.
 @Mod(value = AgainstTheCreepingRot.MODID, dist = Dist.CLIENT)
@@ -55,6 +64,7 @@ public class AgainstTheCreepingRotClient {
         event.registerLayerDefinition(ATCRModelLayerLocations.LOST_TRAVELER, LostTravelerModel::createBodyLayer);
         event.registerLayerDefinition(ATCRModelLayerLocations.DEER, DeerModel::createBodyLayer);
     }
+
 
     @SubscribeEvent
     public static void registeredKeyMappings(RegisterKeyMappingsEvent event){
