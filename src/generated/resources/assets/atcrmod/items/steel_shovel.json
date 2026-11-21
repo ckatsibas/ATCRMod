@@ -1,6 +1,19 @@
 {
   "model": {
-    "type": "minecraft:model",
-    "model": "atcrmod:item/steel_shovel"
+    "type": "minecraft:select",
+    "cases": [
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "atcrmod:item/steel_shovel_2d"
+        },
+        "when": "gui"
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "atcrmod:item/steel_shovel_3d"
+    },
+    "property": "minecraft:display_context"
   }
 }

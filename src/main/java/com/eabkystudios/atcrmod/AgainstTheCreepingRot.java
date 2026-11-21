@@ -4,7 +4,6 @@ import com.eabkystudios.atcrmod.block.ATCRBlocks;
 import com.eabkystudios.atcrmod.block.entity.ATCRBlockEntities;
 import com.eabkystudios.atcrmod.creativemodtab.CreativeTab;
 import com.eabkystudios.atcrmod.data.ATCRDataComponents;
-import com.eabkystudios.atcrmod.datagen.ATCRCuriosProvider;
 import com.eabkystudios.atcrmod.effect.ATCREffects;
 import com.eabkystudios.atcrmod.entity.ATCREntities;
 import com.eabkystudios.atcrmod.item.ATCRItems;
@@ -12,8 +11,6 @@ import com.eabkystudios.atcrmod.menu.ATCRMenuTypes;
 import com.eabkystudios.atcrmod.worldgen.ATCRFeatures;
 import com.eabkystudios.atcrmod.worldgen.structures.ATCRStructurePlacements;
 import com.eabkystudios.atcrmod.worldgen.structures.ATCRStructures;
-import net.minecraft.data.DataGenerator;
-import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;

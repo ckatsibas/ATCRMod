@@ -1,4 +1,4 @@
-package com.eabkystudios.atcrmod.datagen;
+package com.eabkystudios.atcrmod.datagen.item;
 
 import com.eabkystudios.atcrmod.AgainstTheCreepingRot;
 import com.eabkystudios.atcrmod.item.ATCRItems;
@@ -6,7 +6,6 @@ import com.eabkystudios.atcrmod.tags.ATCRTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.common.data.ItemTagsProvider;
 
 import java.util.concurrent.CompletableFuture;

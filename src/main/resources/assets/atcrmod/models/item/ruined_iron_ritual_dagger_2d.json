@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "atcrmod:item/ruined_steel_ritual_dagger"
+    "layer0": "atcrmod:item/ruined_iron_ritual_dagger"
   }
 }

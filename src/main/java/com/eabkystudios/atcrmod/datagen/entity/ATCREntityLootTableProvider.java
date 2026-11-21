@@ -1,4 +1,4 @@
-package com.eabkystudios.atcrmod.datagen;
+package com.eabkystudios.atcrmod.datagen.entity;
 
 import com.eabkystudios.atcrmod.entity.ATCREntities;
 import com.eabkystudios.atcrmod.item.ATCRItems;

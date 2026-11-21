@@ -1,4 +1,4 @@
-package com.eabkystudios.atcrmod.datagen;
+package com.eabkystudios.atcrmod.datagen.item;
 
 import com.eabkystudios.atcrmod.item.ATCRItems;
 import net.minecraft.core.HolderLookup;

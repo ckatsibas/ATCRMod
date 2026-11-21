@@ -70,6 +70,20 @@
 		},
 		"thirdperson_lefthand": {
 			"translation": [0, 0, 2]
+		},
+		"firstperson_righthand": {
+			"translation": [1.5, 0, 0]
+		},
+		"firstperson_lefthand": {
+			"translation": [1.5, 0, 0]
+		},
+		"ground": {
+			"rotation": [33, 22, 65]
+		},
+		"fixed": {
+			"rotation": [-150, 11, 180],
+			"translation": [0, -12.75, -17.75],
+			"scale": [2, 2, 2]
 		}
 	},
 	"groups": [

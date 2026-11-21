@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "atcrmod:item/steel_armor_helmet"
+    "layer0": "atcrmod:item/steel_chestplate"
   }
 }

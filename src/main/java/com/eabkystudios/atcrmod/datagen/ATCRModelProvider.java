@@ -44,9 +44,15 @@ public class ATCRModelProvider extends ModelProvider {
         generateGuiOverrideItem(itemModels, ATCRItems.STEEL_SWORD.get(),
                 Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/steel_sword_2d"),
                 Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/steel_sword_3d"));
-        itemModels.declareCustomModelItem(ATCRItems.STEEL_PICKAXE.get());
-        itemModels.declareCustomModelItem(ATCRItems.STEEL_AXE.get());
-        itemModels.declareCustomModelItem(ATCRItems.STEEL_SHOVEL.get());
+        generateGuiOverrideItem(itemModels, ATCRItems.STEEL_PICKAXE.get(),
+                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/steel_pickaxe_2d"),
+                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/steel_pickaxe_3d"));
+        generateGuiOverrideItem(itemModels, ATCRItems.STEEL_AXE.get(),
+                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/steel_axe_2d"),
+                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/steel_axe_3d"));
+        generateGuiOverrideItem(itemModels, ATCRItems.STEEL_SHOVEL.get(),
+                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/steel_shovel_2d"),
+                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/steel_shovel_3d"));
         itemModels.declareCustomModelItem(ATCRItems.TRAVELER_SWORD.get());
         itemModels.declareCustomModelItem(ATCRItems.TRAVELER_DAGGER.get());
         // itemModels.declareCustomModelItem(ATCRItems.TRAVELER_SHIELD.get());
@@ -58,9 +64,9 @@ public class ATCRModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ATCRItems.GOLD_RING.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ATCRItems.AMULET_OF_THE_DEATHLESS.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ATCRItems.RED_METAL_INGOT.get(), ModelTemplates.FLAT_ITEM);
-        generateGuiOverrideItem(itemModels, ATCRItems.RUINED_STEEL_RITUAL_DAGGER.get(),
-                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/ruined_steel_ritual_dagger_2d"),
-                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/ruined_steel_ritual_dagger_3d"));
+        generateGuiOverrideItem(itemModels, ATCRItems.RUINED_IRON_RITUAL_DAGGER.get(),
+                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/ruined_iron_ritual_dagger_2d"),
+                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/ruined_iron_ritual_dagger_3d"));
         itemModels.generateFlatItem(ATCRItems.HEART_OF_RUINOUS_ROT.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ATCRItems.STEEL_ARMOR_HELMET.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ATCRItems.STEEL_ARMOR_CHESTPLATE.get(), ModelTemplates.FLAT_ITEM);

@@ -1,6 +1,12 @@
 package com.eabkystudios.atcrmod;
 
 import com.eabkystudios.atcrmod.datagen.*;
+import com.eabkystudios.atcrmod.datagen.block.ATCRBlockLootTableProvider;
+import com.eabkystudios.atcrmod.datagen.block.ATCRBlockTagsProvider;
+import com.eabkystudios.atcrmod.datagen.entity.ATCREntityLootTableProvider;
+import com.eabkystudios.atcrmod.datagen.item.ATCRCuriosProvider;
+import com.eabkystudios.atcrmod.datagen.item.ATCREquipmentAssetProvider;
+import com.eabkystudios.atcrmod.datagen.item.ATCRItemTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;

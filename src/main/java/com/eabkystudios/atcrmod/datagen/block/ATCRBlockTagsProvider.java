@@ -1,4 +1,4 @@
-package com.eabkystudios.atcrmod.datagen;
+package com.eabkystudios.atcrmod.datagen.block;
 
 import com.eabkystudios.atcrmod.AgainstTheCreepingRot;
 import com.eabkystudios.atcrmod.block.ATCRBlocks;

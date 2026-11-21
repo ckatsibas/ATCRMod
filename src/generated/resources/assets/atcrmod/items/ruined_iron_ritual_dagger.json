@@ -5,14 +5,14 @@
       {
         "model": {
           "type": "minecraft:model",
-          "model": "atcrmod:item/ruined_steel_ritual_dagger_2d"
+          "model": "atcrmod:item/ruined_iron_ritual_dagger_2d"
         },
         "when": "gui"
       }
     ],
     "fallback": {
       "type": "minecraft:model",
-      "model": "atcrmod:item/ruined_steel_ritual_dagger_3d"
+      "model": "atcrmod:item/ruined_iron_ritual_dagger_3d"
     },
     "property": "minecraft:display_context"
   }

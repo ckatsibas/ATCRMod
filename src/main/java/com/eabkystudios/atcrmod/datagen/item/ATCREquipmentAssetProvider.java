@@ -1,12 +1,9 @@
-package com.eabkystudios.atcrmod.datagen;
+package com.eabkystudios.atcrmod.datagen.item;
 
-import com.eabkystudios.atcrmod.AgainstTheCreepingRot;
-import com.eabkystudios.atcrmod.item.ATCRArmorMaterials;
 import net.minecraft.client.resources.model.EquipmentClientInfo;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.equipment.EquipmentAsset;
 
