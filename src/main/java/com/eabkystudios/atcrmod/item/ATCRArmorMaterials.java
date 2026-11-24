@@ -20,8 +20,10 @@ import java.util.Map;
 public class ATCRArmorMaterials {
     public static final ResourceKey<? extends Registry<EquipmentAsset>> ROOT_ID = ResourceKey.createRegistryKey(Identifier.withDefaultNamespace("equipment_asset"));
     public static final ResourceKey<EquipmentAsset> STEEL_KEY = ResourceKey.create(EquipmentAssets.ROOT_ID, Identifier.fromNamespaceAndPath("atcrmod", "steel"));
+    public static final ResourceKey<EquipmentAsset> SILVER_KEY = ResourceKey.create(EquipmentAssets.ROOT_ID, Identifier.fromNamespaceAndPath("atcrmod", "steel"));
 
-    public static final ArmorMaterial STEEL_ARMOR_MATERIAL = new ArmorMaterial(1200, makeDefense(3, 6, 6, 3, 6), 16, SoundEvents.ARMOR_EQUIP_IRON, 2f, 0.1f, ATCRTags.Items.STEEL_REPAIRABLE, STEEL_KEY);
+    public static final ArmorMaterial STEEL_ARMOR_MATERIAL = new ArmorMaterial(1200, makeDefense(3, 6, 6, 3, 6), 16, SoundEvents.ARMOR_EQUIP_IRON, 2f, 0.3f, ATCRTags.Items.STEEL_REPAIRABLE, STEEL_KEY);
+    public static final ArmorMaterial SILVER_ARMOR_MATERIAL = new ArmorMaterial(800, makeDefense(2, 5, 5, 2, 5), 22, SoundEvents.ARMOR_EQUIP_IRON, 1f, 0.1f, ATCRTags.Items.SILVER_REPAIRABLE, SILVER_KEY);
 
     private static Map<ArmorType, Integer> makeDefense(int boots, int legs, int chest, int helm, int body) {
         return Maps.newEnumMap(Map.of(ArmorType.BOOTS, boots, ArmorType.LEGGINGS, legs, ArmorType.CHESTPLATE, chest, ArmorType.HELMET, helm, ArmorType.BODY, body));

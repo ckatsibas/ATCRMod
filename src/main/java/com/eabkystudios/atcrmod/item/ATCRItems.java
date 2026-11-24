@@ -1,6 +1,8 @@
 package com.eabkystudios.atcrmod.item;
 
 import com.eabkystudios.atcrmod.AgainstTheCreepingRot;
+import com.eabkystudios.atcrmod.data.ATCRDataComponents;
+import com.eabkystudios.atcrmod.data.custom.DeathlessAmuletProtection;
 import com.eabkystudios.atcrmod.entity.ATCREntities;
 import com.eabkystudios.atcrmod.item.custom.*;
 import com.eabkystudios.atcrmod.item.food.ATCRFoods;
@@ -38,7 +40,10 @@ public class ATCRItems {
     public static final DeferredItem<Item> SILVER_INGOT = ITEMS.registerSimpleItem("silver_ingot");
     public static final DeferredItem<Item> RAW_SILVER = ITEMS.registerSimpleItem("raw_silver");
     public static final DeferredItem<Item> SILVER_SWORD = ITEMS.registerItem("silver_sword", properties -> new SilverSwordItem(properties.sword(ATCRToolTiers.SILVER, 3f, -2f)));
-
+    public static final DeferredItem<Item> SILVER_ARMOR_HELMET = ITEMS.registerItem("silver_helmet", properties -> new SilverArmorItem(properties.humanoidArmor(ATCRArmorMaterials.SILVER_ARMOR_MATERIAL, ArmorType.HELMET)));
+    public static final DeferredItem<Item> SILVER_ARMOR_CHESTPLATE = ITEMS.registerItem("silver_chestplate", properties -> new SilverArmorItem(properties.humanoidArmor(ATCRArmorMaterials.SILVER_ARMOR_MATERIAL, ArmorType.CHESTPLATE)));
+    public static final DeferredItem<Item> SILVER_ARMOR_LEGGINGS = ITEMS.registerItem("silver_leggings", properties -> new SilverArmorItem(properties.humanoidArmor(ATCRArmorMaterials.SILVER_ARMOR_MATERIAL, ArmorType.LEGGINGS)));
+    public static final DeferredItem<Item> SILVER_ARMOR_BOOTS = ITEMS.registerItem("silver_boots", properties -> new SilverArmorItem(properties.humanoidArmor(ATCRArmorMaterials.SILVER_ARMOR_MATERIAL, ArmorType.BOOTS)));
     /* RED */
     public static final DeferredItem<Item> RED_SHARD = ITEMS.registerSimpleItem("red_shard");
     public static final DeferredItem<Item> RED_METAL_INGOT = ITEMS.registerSimpleItem("red_metal_ingot");
@@ -57,8 +62,8 @@ public class ATCRItems {
     /* CURIOS */
     public static final DeferredItem<Item> VITALITY_RING = ITEMS.registerItem(ATCRCurios.VITALITY_RING.identifier().getPath(), RingVitalityItem::new, () -> new Item.Properties().stacksTo(1).durability(0));
     public static final DeferredItem<Item> GOLD_RING = ITEMS.registerItem(ATCRCurios.GOLD_RING.identifier().getPath(), GoldRingItem::new, () -> new Item.Properties().stacksTo(1).durability(0));
-    public static final DeferredItem<Item> AMULET_OF_THE_DEATHLESS = ITEMS.registerItem(ATCRCurios.AMULET_OF_THE_DEATHLESS.identifier().getPath(), AmuletOfTheDeathlessItem::new, () -> new Item.Properties().stacksTo(1).durability(0).component(DataComponents.DEATH_PROTECTION, DeathProtection.TOTEM_OF_UNDYING));
-    public static final DeferredItem<Item> HEART_OF_RUINOUS_ROT = ITEMS.registerItem(ATCRCurios.HEART_OF_RUINOUS_ROT.identifier().getPath(), HeartOfRuinousRotItem::new, () -> new Item.Properties().stacksTo(1).durability(0).component(DataComponents.DEATH_PROTECTION, DeathProtection.TOTEM_OF_UNDYING));
+    public static final DeferredItem<Item> AMULET_OF_THE_DEATHLESS = ITEMS.registerItem(ATCRCurios.AMULET_OF_THE_DEATHLESS.identifier().getPath(), AmuletOfTheDeathlessItem::new, () -> new Item.Properties().stacksTo(1).durability(0).component(ATCRDataComponents.DEATHLESS_AMULET_COOLDOWN, 0).component(ATCRDataComponents.DEATHLESS_AMULET_PROTECTION, DeathlessAmuletProtection.AMULET_OF_THE_DEATHLESS));
+    public static final DeferredItem<Item> HEART_OF_RUINOUS_ROT = ITEMS.registerItem(ATCRCurios.HEART_OF_RUINOUS_ROT.identifier().getPath(), HeartOfRuinousRotItem::new, () -> new Item.Properties().stacksTo(1).durability(0));
 
     /* SPAWN EGGS */
     public static final DeferredItem<Item> LOST_TRAVELER_SPAWN_EGG = ITEMS.registerItem("lost_traveler_spawn_egg", properties -> new SpawnEggItem(properties.spawnEgg(ATCREntities.LOST_TRAVELER.get())));

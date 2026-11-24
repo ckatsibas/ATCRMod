@@ -24,8 +24,7 @@ import java.util.function.Supplier;
 
 public class SteelArmorItem extends Item implements GeoItem {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-
-    public static final DataTicket<Boolean> HAS_FULL_SET_EFFECT = DataTicket.create("examplemod_has_full_set_effect", Boolean.class);
+    public static final DataTicket<Boolean> HAS_FULL_SET_EFFECT = DataTicket.create("atcrmod_steel_has_full_set_effect", Boolean.class);
 
     public SteelArmorItem(Properties properties) {
         super(properties);

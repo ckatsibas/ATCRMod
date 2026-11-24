@@ -4,6 +4,7 @@ import com.eabkystudios.atcrmod.datagen.*;
 import com.eabkystudios.atcrmod.datagen.block.ATCRBlockLootTableProvider;
 import com.eabkystudios.atcrmod.datagen.block.ATCRBlockTagsProvider;
 import com.eabkystudios.atcrmod.datagen.entity.ATCREntityLootTableProvider;
+import com.eabkystudios.atcrmod.datagen.entity.ATCREntityTagsProvider;
 import com.eabkystudios.atcrmod.datagen.item.ATCRCuriosProvider;
 import com.eabkystudios.atcrmod.datagen.item.ATCREquipmentAssetProvider;
 import com.eabkystudios.atcrmod.datagen.item.ATCRItemTagsProvider;
@@ -39,5 +40,6 @@ public class AgainstTheCreepingRotDataGen {
         generator.addProvider(true, new ATCRDatapackProvider(packOutput, lookupProvider));
         generator.addProvider(true, new ATCRCuriosProvider(AgainstTheCreepingRot.MODID, packOutput, lookupProvider));
         generator.addProvider(true, new ATCREquipmentAssetProvider(packOutput));
+        generator.addProvider(true, new ATCREntityTagsProvider(packOutput, lookupProvider, AgainstTheCreepingRot.MODID));
     }
 }

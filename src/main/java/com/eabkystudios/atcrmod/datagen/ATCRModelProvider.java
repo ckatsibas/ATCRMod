@@ -40,7 +40,9 @@ public class ATCRModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ATCRItems.RAW_SILVER.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ATCRItems.LOTUS_FLOWER.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ATCRItems.LEATHER_WRAPPED_HANDLE.get(), ModelTemplates.FLAT_ITEM);
-        itemModels.declareCustomModelItem(ATCRItems.SILVER_SWORD.get());
+        generateGuiOverrideItem(itemModels, ATCRItems.SILVER_SWORD.get(),
+                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/silver_sword_2d"),
+                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/silver_sword_3d"));
         generateGuiOverrideItem(itemModels, ATCRItems.STEEL_SWORD.get(),
                 Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/steel_sword_2d"),
                 Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/steel_sword_3d"));
@@ -72,6 +74,10 @@ public class ATCRModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ATCRItems.STEEL_ARMOR_CHESTPLATE.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ATCRItems.STEEL_ARMOR_LEGGINGS.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ATCRItems.STEEL_ARMOR_BOOTS.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ATCRItems.SILVER_ARMOR_HELMET.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ATCRItems.SILVER_ARMOR_CHESTPLATE.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ATCRItems.SILVER_ARMOR_LEGGINGS.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ATCRItems.SILVER_ARMOR_BOOTS.get(), ModelTemplates.FLAT_ITEM);
 
         /*BLOCKS*/
         blockModels.createTrivialCube(ATCRBlocks.STEEL_BLOCK.get());

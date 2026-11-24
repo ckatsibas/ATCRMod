@@ -1,6 +1,7 @@
 package com.eabkystudios.atcrmod.data;
 
 import com.eabkystudios.atcrmod.AgainstTheCreepingRot;
+import com.eabkystudios.atcrmod.data.custom.DeathlessAmuletProtection;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
@@ -22,6 +23,8 @@ public class ATCRDataComponents {
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> IS_ON = register("is_on", builder -> builder.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL));
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ENERGY = register("energy", builder -> builder.persistent(Codec.intRange(0, Integer.MAX_VALUE)).networkSynchronized(ByteBufCodecs.VAR_INT));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> DEATHLESS_AMULET_COOLDOWN = register("deathless_amulet_cooldown", builder ->  builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<DeathlessAmuletProtection>> DEATHLESS_AMULET_PROTECTION = register("deathless_amulet_protection", builder ->  builder.persistent(DeathlessAmuletProtection.CODEC).networkSynchronized(DeathlessAmuletProtection.STREAM_CODEC).cacheEncoding());
 
 
     private static <T>DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String name, UnaryOperator<DataComponentType.Builder<T>> builderOperator) {

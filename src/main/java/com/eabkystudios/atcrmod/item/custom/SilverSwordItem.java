@@ -28,7 +28,7 @@ public class SilverSwordItem extends Item {
 
         if(!attacker.level().isClientSide()){
             logger.debug("Level check: server.");
-            if (mob.is(EntityTypeTags.UNDEAD) || mob.is(ATCREntities.LOST_TRAVELER.get()) && mob.isAlive() && !mob.isInvulnerable()){
+            if (mob.is(EntityTypeTags.UNDEAD) && mob.isAlive() && !mob.isInvulnerable()){
                 float damageMulti = 1.8f;
                 float newDamageAmount = (float) attacker.getAttribute(Attributes.ATTACK_DAMAGE).getValue() * damageMulti;
                 mob.hurtServer((ServerLevel) attacker.level(), Objects.requireNonNull(mob.getLastDamageSource()), newDamageAmount);

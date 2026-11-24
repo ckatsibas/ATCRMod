@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
+//TODO: add cooldown to instant health effect
 public class RingVitalityItem extends Item implements ICurioItem {
     private static final Logger log = LoggerFactory.getLogger(RingVitalityItem.class);
     private Identifier id = Identifier.fromNamespaceAndPath("atcrmod", "ring_of_vitality_modifier");
