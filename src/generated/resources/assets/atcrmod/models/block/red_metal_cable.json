@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "atcrmod:block/red_metal_cable"
-  }
-}

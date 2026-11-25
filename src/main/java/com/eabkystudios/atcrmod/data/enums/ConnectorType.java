@@ -4,7 +4,9 @@ import javax.annotation.Nonnull;
 
 public enum ConnectorType implements StringRepresentable {
     NONE,
-    CABLE;
+    CABLE,
+    MACHINE,
+    GENERATOR;
 
     public static final ConnectorType[] VALUES = values();
 

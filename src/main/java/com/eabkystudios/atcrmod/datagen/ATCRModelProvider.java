@@ -2,13 +2,17 @@ package com.eabkystudios.atcrmod.datagen;
 
 import com.eabkystudios.atcrmod.AgainstTheCreepingRot;
 import com.eabkystudios.atcrmod.block.ATCRBlocks;
+import com.eabkystudios.atcrmod.block.custom.RedMetalCableBlock;
+import com.eabkystudios.atcrmod.data.enums.ConnectorType;
 import com.eabkystudios.atcrmod.item.ATCRItems;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.MultiVariant;
+import net.minecraft.client.data.models.blockstates.MultiPartGenerator;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.model.*;
+import net.minecraft.client.renderer.block.dispatch.multipart.Condition;
 import net.minecraft.client.renderer.item.CuboidItemModelWrapper;
 import net.minecraft.client.renderer.item.SelectItemModel;
 import net.minecraft.client.renderer.item.properties.select.DisplayContext;
@@ -19,7 +23,13 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import org.jspecify.annotations.NonNull;
+import com.eabkystudios.atcrmod.data.enums.ConnectorType;
+import net.minecraft.client.data.models.blockstates.ConditionBuilder;
+import net.minecraft.client.data.models.blockstates.MultiPartGenerator;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -94,7 +104,7 @@ public class ATCRModelProvider extends ModelProvider {
         blockModels.family(ATCRBlocks.RUINED_MOSSY_STONE_BRICKS.get()).stairs(ATCRBlocks.RUINED_MOSSY_STONE_BRICKS_STAIRS.get()).slab(ATCRBlocks.RUINED_MOSSY_STONE_BRICKS_SLAB.get()).wall(ATCRBlocks.RUINED_MOSSY_STONE_BRICKS_WALL.get());
         blockModels.family(ATCRBlocks.RUINED_CRACKED_STONE_BRICKS.get()).stairs(ATCRBlocks.RUINED_CRACKED_STONE_BRICKS_STAIRS.get()).slab(ATCRBlocks.RUINED_CRACKED_STONE_BRICKS_SLAB.get()).wall(ATCRBlocks.RUINED_CRACKED_STONE_BRICKS_WALL.get());
         blockModels.createTrivialCube(ATCRBlocks.RUINED_CHISELED_STONE_BRICKS.get());
-        blockModels.createTrivialCube(ATCRBlocks.RED_METAL_CABLE.get());
+        createMultipartCable(blockModels, ATCRBlocks.RED_METAL_CABLE.get());
     }
 
     /*METHODS*/
@@ -128,4 +138,68 @@ public class ATCRModelProvider extends ModelProvider {
 
         itemModels.itemModelOutput.accept(item, new SelectItemModel.Unbaked(Optional.empty(), displayContextSwitch, Optional.of(fallbackModel)));
     }
+
+    /**
+     * Generates a multipart blockstate for the cable and registers its item model.
+     * The core model is always applied; each directional arm is applied when the
+     * corresponding blockstate property is {@link ConnectorType#CABLE}.
+     *
+     * @param blockModels the block model generators receiving the blockstate and item model
+     * @param block the cable block whose blockstate and item model are generated
+     */
+    private void createMultipartCable(
+            BlockModelGenerators blockModels,
+            Block block
+    ) {
+        var multipart = MultiPartGenerator
+                .multiPart(block)
+                .with(plainVariant(modelId("block/cable/core")));
+
+        addCableParts(multipart, RedMetalCableBlock.NORTH, "north");
+        addCableParts(multipart, RedMetalCableBlock.SOUTH, "south");
+        addCableParts(multipart, RedMetalCableBlock.WEST, "west");
+        addCableParts(multipart, RedMetalCableBlock.EAST, "east");
+        addCableParts(multipart, RedMetalCableBlock.UP, "up");
+        addCableParts(multipart, RedMetalCableBlock.DOWN, "down");
+
+        blockModels.blockStateOutput.accept(multipart);
+        blockModels.registerSimpleItemModel(block, modelId("block/cable/core")); //TODO: change to 2d item for hand and inventory
+    }
+
+
+    /**
+     * Adds one conditional arm to a multipart blockstate. The arm is included
+     * when the given direction property has the value {@link ConnectorType#CABLE}.
+     *
+     * @param generator the multipart blockstate generator to add the arm to
+     * @param property the blockstate property corresponding to the arm's direction
+     * @param direction the direction name used in the arm model path, such as{@code "north"} for {@code block/cable/arm_north}
+     */
+    private void addCableParts(
+            MultiPartGenerator generator,
+            EnumProperty<ConnectorType> property,
+            String direction
+    ) {
+        for (ConnectorType connectorType : ConnectorType.values()) {
+            if (connectorType == ConnectorType.NONE) {
+                continue;
+            }
+
+            generator.with(
+                    new ConditionBuilder()
+                            .term(property, connectorType)
+                            .build(),
+                    plainVariant(modelId("block/cable/arm_" + direction))
+            );
+        }
+    }
+
+
+    /**
+     * Creates a model identifier in this mod's namespace.
+     */
+    private Identifier modelId(String path) {
+        return Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, path);
+    }
+
 }
