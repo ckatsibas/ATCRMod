@@ -59,6 +59,6 @@ public class DenseRedBlockEntity extends AbstractEnergyGeneratorBlockEntity {
             energy.extractEnergy(accepted, false);
         }
 
-        log.debug("Energy in generator: " + energy.getEnergyStored());
+        // log.debug("Energy in generator: " + energy.getEnergyStored());
     }
 }

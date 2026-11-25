@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "atcrmod:block/cable/core"
+    "model": "atcrmod:block/red_metal_cable/core"
   }
 }

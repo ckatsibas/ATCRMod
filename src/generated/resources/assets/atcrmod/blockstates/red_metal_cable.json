@@ -2,12 +2,12 @@
   "multipart": [
     {
       "apply": {
-        "model": "atcrmod:block/cable/core"
+        "model": "atcrmod:block/red_metal_cable/core"
       }
     },
     {
       "apply": {
-        "model": "atcrmod:block/cable/arm_north"
+        "model": "atcrmod:block/red_metal_cable/arm_north"
       },
       "when": {
         "north": "cable"
@@ -15,7 +15,7 @@
     },
     {
       "apply": {
-        "model": "atcrmod:block/cable/arm_north"
+        "model": "atcrmod:block/red_metal_cable/arm_north"
       },
       "when": {
         "north": "machine"
@@ -23,7 +23,7 @@
     },
     {
       "apply": {
-        "model": "atcrmod:block/cable/arm_north"
+        "model": "atcrmod:block/red_metal_cable/arm_north"
       },
       "when": {
         "north": "generator"
@@ -31,7 +31,7 @@
     },
     {
       "apply": {
-        "model": "atcrmod:block/cable/arm_south"
+        "model": "atcrmod:block/red_metal_cable/arm_south"
       },
       "when": {
         "south": "cable"
@@ -39,7 +39,7 @@
     },
     {
       "apply": {
-        "model": "atcrmod:block/cable/arm_south"
+        "model": "atcrmod:block/red_metal_cable/arm_south"
       },
       "when": {
         "south": "machine"
@@ -47,7 +47,7 @@
     },
     {
       "apply": {
-        "model": "atcrmod:block/cable/arm_south"
+        "model": "atcrmod:block/red_metal_cable/arm_south"
       },
       "when": {
         "south": "generator"
@@ -55,7 +55,7 @@
     },
     {
       "apply": {
-        "model": "atcrmod:block/cable/arm_west"
+        "model": "atcrmod:block/red_metal_cable/arm_west"
       },
       "when": {
         "west": "cable"
@@ -63,7 +63,7 @@
     },
     {
       "apply": {
-        "model": "atcrmod:block/cable/arm_west"
+        "model": "atcrmod:block/red_metal_cable/arm_west"
       },
       "when": {
         "west": "machine"
@@ -71,7 +71,7 @@
     },
     {
       "apply": {
-        "model": "atcrmod:block/cable/arm_west"
+        "model": "atcrmod:block/red_metal_cable/arm_west"
       },
       "when": {
         "west": "generator"
@@ -79,7 +79,7 @@
     },
     {
       "apply": {
-        "model": "atcrmod:block/cable/arm_east"
+        "model": "atcrmod:block/red_metal_cable/arm_east"
       },
       "when": {
         "east": "cable"
@@ -87,7 +87,7 @@
     },
     {
       "apply": {
-        "model": "atcrmod:block/cable/arm_east"
+        "model": "atcrmod:block/red_metal_cable/arm_east"
       },
       "when": {
         "east": "machine"
@@ -95,7 +95,7 @@
     },
     {
       "apply": {
-        "model": "atcrmod:block/cable/arm_east"
+        "model": "atcrmod:block/red_metal_cable/arm_east"
       },
       "when": {
         "east": "generator"
@@ -103,7 +103,7 @@
     },
     {
       "apply": {
-        "model": "atcrmod:block/cable/arm_up"
+        "model": "atcrmod:block/red_metal_cable/arm_up"
       },
       "when": {
         "up": "cable"
@@ -111,7 +111,7 @@
     },
     {
       "apply": {
-        "model": "atcrmod:block/cable/arm_up"
+        "model": "atcrmod:block/red_metal_cable/arm_up"
       },
       "when": {
         "up": "machine"
@@ -119,7 +119,7 @@
     },
     {
       "apply": {
-        "model": "atcrmod:block/cable/arm_up"
+        "model": "atcrmod:block/red_metal_cable/arm_up"
       },
       "when": {
         "up": "generator"
@@ -127,7 +127,7 @@
     },
     {
       "apply": {
-        "model": "atcrmod:block/cable/arm_down"
+        "model": "atcrmod:block/red_metal_cable/arm_down"
       },
       "when": {
         "down": "cable"
@@ -135,7 +135,7 @@
     },
     {
       "apply": {
-        "model": "atcrmod:block/cable/arm_down"
+        "model": "atcrmod:block/red_metal_cable/arm_down"
       },
       "when": {
         "down": "machine"
@@ -143,7 +143,7 @@
     },
     {
       "apply": {
-        "model": "atcrmod:block/cable/arm_down"
+        "model": "atcrmod:block/red_metal_cable/arm_down"
       },
       "when": {
         "down": "generator"

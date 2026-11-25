@@ -12,7 +12,6 @@ import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.MultiPartGenerator;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.model.*;
-import net.minecraft.client.renderer.block.dispatch.multipart.Condition;
 import net.minecraft.client.renderer.item.CuboidItemModelWrapper;
 import net.minecraft.client.renderer.item.SelectItemModel;
 import net.minecraft.client.renderer.item.properties.select.DisplayContext;
@@ -25,10 +24,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import org.jspecify.annotations.NonNull;
-import com.eabkystudios.atcrmod.data.enums.ConnectorType;
 import net.minecraft.client.data.models.blockstates.ConditionBuilder;
-import net.minecraft.client.data.models.blockstates.MultiPartGenerator;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
+
 
 
 import java.util.List;
@@ -50,21 +47,11 @@ public class ATCRModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ATCRItems.RAW_SILVER.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ATCRItems.LOTUS_FLOWER.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ATCRItems.LEATHER_WRAPPED_HANDLE.get(), ModelTemplates.FLAT_ITEM);
-        generateGuiOverrideItem(itemModels, ATCRItems.SILVER_SWORD.get(),
-                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/silver_sword_2d"),
-                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/silver_sword_3d"));
-        generateGuiOverrideItem(itemModels, ATCRItems.STEEL_SWORD.get(),
-                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/steel_sword_2d"),
-                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/steel_sword_3d"));
-        generateGuiOverrideItem(itemModels, ATCRItems.STEEL_PICKAXE.get(),
-                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/steel_pickaxe_2d"),
-                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/steel_pickaxe_3d"));
-        generateGuiOverrideItem(itemModels, ATCRItems.STEEL_AXE.get(),
-                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/steel_axe_2d"),
-                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/steel_axe_3d"));
-        generateGuiOverrideItem(itemModels, ATCRItems.STEEL_SHOVEL.get(),
-                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/steel_shovel_2d"),
-                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/steel_shovel_3d"));
+        generateGuiOverrideItem(itemModels, ATCRItems.SILVER_SWORD.get(), "item/silver_sword_2d", "item/silver_sword_3d");
+        generateGuiOverrideItem(itemModels, ATCRItems.STEEL_SWORD.get(), "item/steel_sword_2d", "item/steel_sword_3d");
+        generateGuiOverrideItem(itemModels, ATCRItems.STEEL_PICKAXE.get(),"item/steel_pickaxe_2d","item/steel_pickaxe_3d");
+        generateGuiOverrideItem(itemModels, ATCRItems.STEEL_AXE.get(), "item/steel_axe_2d", "item/steel_axe_3d");
+        generateGuiOverrideItem(itemModels, ATCRItems.STEEL_SHOVEL.get(),"item/steel_shovel_2d", "item/steel_shovel_3d");
         itemModels.declareCustomModelItem(ATCRItems.TRAVELER_SWORD.get());
         itemModels.declareCustomModelItem(ATCRItems.TRAVELER_DAGGER.get());
         // itemModels.declareCustomModelItem(ATCRItems.TRAVELER_SHIELD.get());
@@ -76,9 +63,7 @@ public class ATCRModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ATCRItems.GOLD_RING.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ATCRItems.AMULET_OF_THE_DEATHLESS.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ATCRItems.RED_METAL_INGOT.get(), ModelTemplates.FLAT_ITEM);
-        generateGuiOverrideItem(itemModels, ATCRItems.RUINED_IRON_RITUAL_DAGGER.get(),
-                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/ruined_iron_ritual_dagger_2d"),
-                Identifier.fromNamespaceAndPath(AgainstTheCreepingRot.MODID, "item/ruined_iron_ritual_dagger_3d"));
+        generateGuiOverrideItem(itemModels, ATCRItems.RUINED_IRON_RITUAL_DAGGER.get(), "item/ruined_iron_ritual_dagger_2d", "item/ruined_iron_ritual_dagger_3d");
         itemModels.generateFlatItem(ATCRItems.HEART_OF_RUINOUS_ROT.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ATCRItems.STEEL_ARMOR_HELMET.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ATCRItems.STEEL_ARMOR_CHESTPLATE.get(), ModelTemplates.FLAT_ITEM);
@@ -104,7 +89,7 @@ public class ATCRModelProvider extends ModelProvider {
         blockModels.family(ATCRBlocks.RUINED_MOSSY_STONE_BRICKS.get()).stairs(ATCRBlocks.RUINED_MOSSY_STONE_BRICKS_STAIRS.get()).slab(ATCRBlocks.RUINED_MOSSY_STONE_BRICKS_SLAB.get()).wall(ATCRBlocks.RUINED_MOSSY_STONE_BRICKS_WALL.get());
         blockModels.family(ATCRBlocks.RUINED_CRACKED_STONE_BRICKS.get()).stairs(ATCRBlocks.RUINED_CRACKED_STONE_BRICKS_STAIRS.get()).slab(ATCRBlocks.RUINED_CRACKED_STONE_BRICKS_SLAB.get()).wall(ATCRBlocks.RUINED_CRACKED_STONE_BRICKS_WALL.get());
         blockModels.createTrivialCube(ATCRBlocks.RUINED_CHISELED_STONE_BRICKS.get());
-        createMultipartCable(blockModels, ATCRBlocks.RED_METAL_CABLE.get());
+        createMultipartCable(blockModels, ATCRBlocks.RED_METAL_CABLE.get(), "block/red_metal_cable");
     }
 
     /*METHODS*/
@@ -125,10 +110,10 @@ public class ATCRModelProvider extends ModelProvider {
      * @param guiModelId the model to use in the GUI
      * @param fallbackModelId the model to use in other contexts
      */
-    private void generateGuiOverrideItem(ItemModelGenerators itemModels, Item item, Identifier guiModelId, Identifier fallbackModelId) {
+    private void generateGuiOverrideItem(ItemModelGenerators itemModels, Item item, String guiModelId, String fallbackModelId) {
         // Wrap each model ID in the format expected by the item model system.
-        var guiModel = new CuboidItemModelWrapper.Unbaked(guiModelId, Optional.empty(), List.of());
-        var fallbackModel = new CuboidItemModelWrapper.Unbaked(fallbackModelId, Optional.empty(), List.of());
+        var guiModel = new CuboidItemModelWrapper.Unbaked(modelId(guiModelId), Optional.empty(), List.of());
+        var fallbackModel = new CuboidItemModelWrapper.Unbaked(modelId(fallbackModelId), Optional.empty(), List.of());
 
         // Use guiModel whenever the item is shown in the GUI.
         var guiCase = new SelectItemModel.SwitchCase<ItemDisplayContext>(List.of(ItemDisplayContext.GUI), guiModel);
@@ -142,58 +127,41 @@ public class ATCRModelProvider extends ModelProvider {
     /**
      * Generates a multipart blockstate for the cable and registers its item model.
      * The core model is always applied; each directional arm is applied when the
-     * corresponding blockstate property is {@link ConnectorType#CABLE}.
-     *
-     * @param blockModels the block model generators receiving the blockstate and item model
-     * @param block the cable block whose blockstate and item model are generated
+     * corresponding blockstate property is {@link ConnectorType#CABLE}, {@link ConnectorType#MACHINE} or {@link ConnectorType#GENERATOR}.
      */
-    private void createMultipartCable(
-            BlockModelGenerators blockModels,
-            Block block
-    ) {
-        var multipart = MultiPartGenerator
-                .multiPart(block)
-                .with(plainVariant(modelId("block/cable/core")));
+    private void createMultipartCable(BlockModelGenerators blockModels, Block block, String path) {
+        var multipart = MultiPartGenerator.multiPart(block).with(plainVariant(modelId(path + "/core")));
 
-        addCableParts(multipart, RedMetalCableBlock.NORTH, "north");
-        addCableParts(multipart, RedMetalCableBlock.SOUTH, "south");
-        addCableParts(multipart, RedMetalCableBlock.WEST, "west");
-        addCableParts(multipart, RedMetalCableBlock.EAST, "east");
-        addCableParts(multipart, RedMetalCableBlock.UP, "up");
-        addCableParts(multipart, RedMetalCableBlock.DOWN, "down");
+        addCableParts(multipart, RedMetalCableBlock.NORTH, path, "north");
+        addCableParts(multipart, RedMetalCableBlock.SOUTH, path, "south");
+        addCableParts(multipart, RedMetalCableBlock.WEST, path, "west");
+        addCableParts(multipart, RedMetalCableBlock.EAST, path, "east");
+        addCableParts(multipart, RedMetalCableBlock.UP, path, "up");
+        addCableParts(multipart, RedMetalCableBlock.DOWN, path, "down");
 
         blockModels.blockStateOutput.accept(multipart);
-        blockModels.registerSimpleItemModel(block, modelId("block/cable/core")); //TODO: change to 2d item for hand and inventory
+        blockModels.registerSimpleItemModel(block, modelId(path + "/core")); //TODO: change to 2d item for hand and gui.
     }
 
 
     /**
      * Adds one conditional arm to a multipart blockstate. The arm is included
-     * when the given direction property has the value {@link ConnectorType#CABLE}.
+     * when the given direction property has any value besides {@link ConnectorType#NONE}.
      *
-     * @param generator the multipart blockstate generator to add the arm to
-     * @param property the blockstate property corresponding to the arm's direction
-     * @param direction the direction name used in the arm model path, such as{@code "north"} for {@code block/cable/arm_north}
+     * @param generator the multipart blockstate generator to add the arm to.
+     * @param property the blockstate property corresponding to the arm's direction.
+     * @param path for the arms' model identifiers.
+     * @param direction the direction name used in the arm model path, such as{@code "north"} for {@code block/cable/arm_north}.
      */
-    private void addCableParts(
-            MultiPartGenerator generator,
-            EnumProperty<ConnectorType> property,
-            String direction
-    ) {
+    private void addCableParts(MultiPartGenerator generator, EnumProperty<ConnectorType> property, String path, String direction) {
         for (ConnectorType connectorType : ConnectorType.values()) {
             if (connectorType == ConnectorType.NONE) {
                 continue;
             }
 
-            generator.with(
-                    new ConditionBuilder()
-                            .term(property, connectorType)
-                            .build(),
-                    plainVariant(modelId("block/cable/arm_" + direction))
-            );
+            generator.with(new ConditionBuilder().term(property, connectorType).build(), plainVariant(modelId(path + "/arm_" + direction)));
         }
     }
-
 
     /**
      * Creates a model identifier in this mod's namespace.
